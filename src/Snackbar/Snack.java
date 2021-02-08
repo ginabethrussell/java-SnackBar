@@ -1,15 +1,18 @@
 package Snackbar;
+import java.text.DecimalFormat;
+
 
 public class Snack 
 {
+	private static DecimalFormat df = new DecimalFormat("$#,##0.00");
 	private static int maxId = 0;
 	private int id;
 	private String name;
 	private int quantity;
 	private double cost;
-	private int vendingMachingId;
+	private int vendingMachineId;
 
-	public Snack(String name, int quantity, double cost, int vendingMachingId)
+	public Snack(String name, int quantity, double cost, int vendingMachineId)
 	{
 
 		// snack state variables
@@ -18,7 +21,7 @@ public class Snack
 		this.name = name;
 		this.quantity = quantity;
 		this.cost = cost;
-		this.vendingMachingId = vendingMachingId;
+		this.vendingMachineId = vendingMachineId;
 	}
 
 	// getter and setter methods
@@ -56,12 +59,12 @@ public class Snack
 
 	public int getVendingMachineId() 
 	{
-		return vendingMachingId;
+		return vendingMachineId;
 	}
 
-	public void setVendingMachineId(int vendingMachingId)
+	public void setVendingMachineId(int vendingMachineId)
 	{
-		this.vendingMachingId = vendingMachingId;
+		this.vendingMachineId = vendingMachineId;
 	}
 
 	// other methods
@@ -81,5 +84,30 @@ public class Snack
 		return cost * quantity;
 	}
 
+	// override println output for objects
+	@Override
+	public String toString()
+	{
+		String vendingMachineName;
+		if (vendingMachineId == 1)
+		{
+			vendingMachineName = "Food";
+		}
+		else if (vendingMachineId == 2)
+		{
+			vendingMachineName = "Drink";
+		}
+		else
+		{
+			vendingMachineName = "Office";
+		}
+		String strResult = df.format(this.getTotalCost(this.quantity));
+        String rtnStr = 
+            "Snack: " + name + "\n" +
+            "Vending Machine: " + vendingMachineName + "\n" +
+            "Quantity: " + quantity + "\n" +
+            "Total Cost: " + strResult + "\n";
+        return rtnStr;
+    }
 
 }

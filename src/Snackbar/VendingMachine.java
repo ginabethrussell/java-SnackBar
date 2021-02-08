@@ -29,4 +29,6 @@ public class VendingMachine
 	{
 		this.name = name;
 	}
+
+
 }
